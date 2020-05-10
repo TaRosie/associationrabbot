@@ -1,0 +1,169 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script type="text/javascript">
+
+	$(document).ready(
+        function(){
+
+            $('#absub').click(
+                 function(){
+
+
+                    let userword = $('#userword').val();
+        
+                 $.ajax({
+                    url: "https://twinword-word-associations-v1.p.rapidapi.com/associations/?entry=" + userword,
+                    headers: { 'x-rapidapi-key':"edfe3d83e3msh65ceffddd52f613p1e476djsn61df1b742ce8", 'x-rapidapi-host': "twinword-word-associations-v1.p.rapidapi.com",},
+
+                    success: function(data) {
+
+                        console.log(data);
+                        let array_length = data.associations_array.length;
+                        let index = parseInt(Math.random() * array_length)
+                        document.getElementById("result").innerHTML = data.associations_array[index];
+                    },
+                    error: function() {
+                        alert("error");
+                    }
+                });        
+            });
+    });
+
+        </script>
+        <style>
+            body {
+                    font-size: 18px;
+                    font-family:'Courier New', Courier, monospace;
+                    background-image: url('https://www.vippng.com/png/detail/361-3612977_website-background-png-tech-background-image-for-website.png');
+                    -webkit-background-size: cover;
+                    -moz-background-size: cover;
+                    -o-background-size: cover;
+                    background-size: cover;
+            }
+            .outer {
+                    display: table;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+            }
+
+            .middle {
+            display: table-cell;
+            vertical-align: middle;
+            }
+
+            .inner {
+            margin-left: auto;
+            margin-right: auto;
+            width:75%;
+
+            }
+            #mainy{
+                margin:auto;
+
+            }
+            #bot{
+                display: flex;  
+                flex-flow: row wrap;
+                font-weight: bold;
+                text-align: center;
+                align-items: flex-end;
+            }
+
+            /* #logo{
+            } */
+        
+            #intro{   
+                margin-left:30px;
+                position: relative;
+                width: 415px;
+                height: 130px;
+                padding: 5px;
+                background: #FFFFFF;
+                -webkit-border-radius: 0px;
+                -moz-border-radius: 0px;
+                border-radius: 0px;
+                border: #7F7F7F solid 1px;
+            }
+            #intro:after{
+                content: '';
+                position: absolute;
+                border-style: solid;
+                border-width: 6px 22px 6px 0;
+                border-color: transparent #FFFFFF;
+                display: block;
+                width: 0;
+                z-index: 1;
+                left: -22px;
+                top: 89px;
+            }
+            #intro:before{
+                content: '';
+                position: absolute;
+                border-style: solid;
+                border-width: 6px 22px 6px 0;
+                border-color: transparent #7F7F7F;
+                display: block;
+                width: 0;
+                z-index: 0;
+                left: -23px;
+                top: 89px;
+
+            }
+
+            #userword{
+                width: 300px;
+                height: 100px;
+                font-size: 20px;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            #absub{
+                width: 80px;
+                height: 40px;
+                font-size: 20px;
+                background-color: lightpink;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+        #box{
+            float: right;
+            margin:20px;
+        }
+            #follow{
+                width:400px;
+                background-image: url('https://www.pngkit.com/png/full/794-7941362_empty-speech-bubble-pixel-chat-bubble-transparent.png');
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+        </style>
+    </head>
+<body>
+    <div class="outer">
+        <div class="middle">
+          <div class="inner">
+            <div id="mainy">
+                <div id="bot">
+                    <div id="logo">
+                        <a href="https://imgbb.com/"><img src="https://i.ibb.co/NjvQrrs/rabbot.png" alt="rabbot" width=150px></a>
+                    </div>
+                    <div id="intro">
+
+                        <p>Hi, I am Association Rabbot, the server of association rabbit hole.</p>
+                        <p>What does the word "<span id="result">rabbit</span>" remind you of?</p>
+
+                    </div>
+                </div>
+                <div id="box">
+                    <form action="/carrot" method="GET">
+                    <input type="text" name="userword" id="userword"> <input type="button" id="absub" value="Submit">
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</body>
+</html>
